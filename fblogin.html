@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raysbook Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffd1cb;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+}
+
+        
+
+        h2{
+            text-align: center;
+            color: #ff0000;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 60%;
+            max-width: 1000px;
+        }
+
+        .logo {
+            flex: 1;    
+            width: 250px;
+            max-width: 300px;
+            margin-bottom: 40px;
+        }
+        .login-box {
+            flex:1;
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        .login-box form{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-box input{
+            padding: 12px;
+            margin-bottom: 12px;
+            font-size: 16px;
+            border: 1px solid #dddfe2;
+            border-radius: 4px;
+        }
+
+        .login-box button {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+}
+        .login-box button:hover {
+            background-color: #000000;
+}
+        .login-box .create-account {
+            background-color: #ff0000;
+            margin-top: 10px;
+}
+        .login-box a {
+            color: #ff0000;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+}
+        .login-box hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #dddfe2;
+}
+    </style>
+</head>
+<body>
+
+<div class = "container">
+
+<img src="rlogo3.png" class="logo">
+<h1>Raysbook</h1>
+
+
+
+
+<div class ="login-box">
+<form>
+    <h2>Sign in</h2>
+    <input type="email" placeholder="Email Address" required>
+
+    <input type="password" placeholder="Password" required> 
+
+    <button type ="submit">Log in</button> 
+
+    <a href="#">Forgot your Password?</a>
+
+    <hr>
+    <button class="create-account">Create new account</button>
+</form>
+</div>
+</div>
+
+</body>
+
+</body>
