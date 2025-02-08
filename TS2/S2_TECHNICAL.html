@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S2 Technical</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            
+            position: relative;
+            min-height: 100vh;
+        }
+
+        
+
+        .day-button {
+            padding: 15px 25px;
+            width: 180px;
+            font-weight: bold;
+            font-size: 24px;
+            cursor: pointer;
+            outline: none;
+            color: #000;
+            background-color: #fff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            display: flex;
+            align-content: center;
+            margin: 50px;
+        }
+
+        .day-button:active{
+            box-shadow: 0 5px #666;
+            transform: translateY(4px); 
+        }
+
+        .box {
+            border: 3px solid #000;
+            border-radius: 20px;
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: top 1s, background-color 1s;
+        }
+
+        .animate-down {
+            top: 150px;
+        }
+
+        @keyframes grow-and-shrink {
+            0% {
+            transform: scale(1);
+            }
+            50% {
+            transform: scale(1.2);
+            }
+            100% {
+            transform: scale(1);
+            }
+        }
+
+        
+        .monday { background-color: #1abc9c; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .tuesday { background-color: #f1c40f; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .wednesday { background-color: #e67e22; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .thursday { background-color: #e74c3c; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .friday { background-color: #9b59b6; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .saturday { background-color: #34495e; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+        .sunday { background-color: #2ecc71; 
+            animation: grow-and-shrink infinite 4000ms;
+        }
+
+        #monday {
+            border: 5px solid #1abc9c;
+        }
+
+        #tuesday {
+            border: 5px solid #f1c40f;
+        }
+
+        #wednesday {
+            border: 5px solid  #e67e22;
+        }
+
+        #thursday {
+            border: 5px solid #e74c3c;
+        }
+
+        #friday {
+            border: 5px solid #9b59b6;
+        }
+
+        #saturday {
+            border: 5px solid #34495e;
+        }
+
+        #sunday {
+            border: 5px solid #2ecc71;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <button id= "monday" class="day-button" onclick="animateBox('monday')">Monday</button>
+        <button id= "tuesday" class="day-button" onclick="animateBox('tuesday')">Tuesday</button>
+        <button id= "wednesday" class="day-button" onclick="animateBox('wednesday')">Wednesday</button>
+        <button id= "thursday" class="day-button" onclick="animateBox('thursday')">Thursday</button>
+        <button id= "friday" class="day-button" onclick="animateBox('friday')">Friday</button>
+        <button id= "saturday" class="day-button" onclick="animateBox('saturday')">Saturday</button>
+        <button id= "sunday" class="day-button" onclick="animateBox('sunday')">Sunday</button>
+    </div>
+    <div id="box-container"></div>
+
+    <script>
+        function animateBox(day) {
+            const boxContainer = document.getElementById('box-container');
+
+            
+            const newBox = document.createElement('div');
+            newBox.className = 'box ' + day;
+
+            
+            boxContainer.appendChild(newBox);
+
+            
+            requestAnimationFrame(() => {
+                newBox.classList.add('animate-down');
+            });
+
+            
+            const oldBox = boxContainer.querySelector('.animate-down:not(.removing)');
+            if (oldBox) {
+                oldBox.classList.add('removing');
+                oldBox.style.top = '-500px';
+                oldBox.addEventListener('transitionend', () => {
+                    oldBox.remove();
+                });
+            }
+        }
+    </script>
+</body>
+</html>
