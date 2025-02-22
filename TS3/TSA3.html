@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        html, body {
+            width: 100%;
+            height:100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            margin: 0;
+        }
+
+        @keyframes gradient {
+        0% {
+        background-position: 0% 50%;
+        }
+        50% {
+        background-position: 100% 50%;
+        }
+        100% {
+        background-position: 0% 50%;
+        }
+        }
+
+        h1{
+            position: absolute;
+            vertical-align: top;
+            margin-bottom: 700px;
+            font-family: 'Coda Caption', sans-serif;
+            font-weight: 800;
+            font-size: 70px; 
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            transform: perspective(300px) scaleY(1.5) rotateX(-40deg);
+            transform-style: preserve-3d; 
+            --layer-depth: 0.32em;
+            color: #F4F0DB;
+        }
+
+        .calculator {
+            border: 10px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #F4F0DB;
+        }
+
+        .display {
+            width: 93%;
+            height: 70px;
+            padding: 10px;
+            font-size: 2.5em;
+            text-align: right;
+            border: none;
+            border: 4px solid #f9f9f9;
+            outline: none;
+            background-color: #000;
+            font-family: digital-clock-font;
+            color: #39FF14;
+            
+        }
+
+        @font-face {
+            font-family:digital-clock-font;
+            src: url(digital-7.regular.ttf);
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding-left: 1px;
+            padding-right: 1px;
+            
+
+            
+        }
+
+        button {
+            
+            padding-top: 20px;
+            padding-bottom: 20px;
+            margin: 5px;
+            border: 1px solid #000;
+            font-size: 1.5em;
+            outline: none;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            font-family: digital-clock-font;
+
+        }
+
+        button:hover {
+            background-color: #eaeaea;
+        }
+
+        button:active {
+            background-color: #dcdcdc;
+        }
+
+        #opButton{
+            background-color: #EE4B2B;
+            color: #F4F0DB;
+        }
+
+        #blueButton{
+            background-color: #225bf4;
+            color: #F4F0DB;
+
+        }
+
+    </style>
+    </head>
+    <body>
+
+    <h1 >CALCULATOR VERSION 1</h1>
+    <div class="calculator">
+        <input type="text" class="display" id="display" readonly>
+        <div class="buttons">
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="deleteChar()">Del</button>
+            <button id="opButton" onclick="appendOperator('/')">/</button>
+            <button id="opButton" onclick="appendOperator('*')">*</button>
+            <button onclick="appendNumber(7)">7</button>
+            <button onclick="appendNumber(8)">8</button>
+            <button onclick="appendNumber(9)">9</button>
+            <button id="opButton" onclick="appendOperator('-')">-</button>
+            <button onclick="appendNumber(4)">4</button>
+            <button onclick="appendNumber(5)">5</button>
+            <button onclick="appendNumber(6)">6</button>
+            <button id="opButton" onclick="appendOperator('+')">+</button>
+            <button onclick="appendNumber(1)">1</button>
+            <button onclick="appendNumber(2)">2</button>
+            <button onclick="appendNumber(3)">3</button>
+            <button onclick="calculate()">=</button>
+            <button id="blueButton" onclick="appendNumber(0)">0</button>
+            <button id="blueButton" onclick="appendNumber('.')">.</button>
+        </div>
+    </div>
+    <script>
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function deleteChar() {
+            let display = document.getElementById('display').value;
+            document.getElementById('display').value = display.slice(0, -1);
+        }
+
+        function appendNumber(number) {
+            document.getElementById('display').value += number;
+        }
+
+        function appendOperator(operator) {
+            document.getElementById('display').value += ` ${operator} `;
+        }
+
+        function calculate() {
+            let display = document.getElementById('display').value;
+            document.getElementById('display').value = eval(display);
+        }
+    </script>
+</body>
+</html>
