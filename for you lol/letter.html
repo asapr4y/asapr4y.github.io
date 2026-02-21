@@ -51,6 +51,98 @@
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
   }
 
+  /* ── Envelope Screen ── */
+  .envelope-screen {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+
+  .envelope-screen.hide { display: none; }
+
+  .envelope-wrap {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .envelope {
+    width: 200px;
+    height: 140px;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #bfdbfe;
+    box-shadow: 6px 6px 0px var(--pink), 12px 12px 0px var(--pink-light);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .envelope-wrap:hover .envelope,
+  .envelope-wrap:active .envelope {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  /* envelope flap */
+  .envelope::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-top: 70px solid #dbeafe;
+  }
+
+  /* envelope bottom fold lines */
+  .envelope::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid #eff6ff;
+  }
+
+  .envelope-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    z-index: 2;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.15); }
+  }
+
+  .envelope-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.4rem;
+    color: var(--dark);
+    text-align: center;
+  }
+
+  .envelope-hint {
+    font-size: 0.85rem;
+    color: #aaa;
+    font-weight: 600;
+    font-style: italic;
+  }
+
+  /* ── Main Card ── */
   .card {
     background: white;
     border-radius: 32px;
@@ -62,8 +154,13 @@
     border: 2px solid #bfdbfe;
     position: relative;
     z-index: 10;
-    animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     margin: 24px auto;
+    display: none;
+  }
+
+  .card.show {
+    display: block;
+    animation: cardPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
   @keyframes cardPop {
@@ -117,9 +214,7 @@
     font-weight: 800;
   }
 
-  .question-section {
-    margin-top: 8px;
-  }
+  .question-section { margin-top: 8px; }
 
   .question {
     font-family: 'Fredoka One', cursive;
@@ -164,7 +259,6 @@
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
-  .btn-no:hover { cursor: not-allowed; }
 
   #no-wrapper {
     position: relative;
@@ -172,20 +266,25 @@
     height: 55px;
   }
 
-  #no-btn {
-    position: absolute;
-    left: 0; top: 0;
-  }
+  #no-btn { position: absolute; left: 0; top: 0; }
 
+  /* ── Letter sections ── */
+  #letter-first { display: block; }
+  #letter-second { display: none; }
+
+  /* ── Result ── */
   .result {
     display: none;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+  }
+
+  .result.show {
+    display: flex;
     animation: cardPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
-  .result.show { display: flex; }
   .question-section.hide { display: none; }
 
   .result-emoji {
@@ -208,6 +307,7 @@
     color: #888;
     font-weight: 600;
     max-width: 300px;
+    text-align: center;
   }
 
   .confetti-piece {
@@ -220,7 +320,7 @@
     z-index: 100;
   }
   @keyframes confettiFall {
-    0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+    0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
     100% { transform: translate(var(--tx), var(--ty)) rotate(720deg); opacity: 0; }
   }
 
@@ -237,12 +337,11 @@
     text-transform: uppercase;
   }
 
-  /* ── Mobile overrides ── */
+  /* ── Mobile ── */
   @media (max-width: 480px) {
-    body {
-      justify-content: flex-start;
-      overflow-y: auto;
-    }
+    body { justify-content: flex-start; overflow-y: auto; }
+
+    .envelope-screen { margin-top: 30vh; }
 
     .card {
       padding: 30px 20px;
@@ -252,45 +351,15 @@
       margin: 20px auto;
     }
 
-    .emoji-header {
-      font-size: 3rem;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    .subtitle {
-      font-size: 0.88rem;
-      margin-bottom: 18px;
-    }
-
-    .message-box {
-      font-size: 0.93rem;
-      padding: 14px 16px;
-      margin-bottom: 18px;
-    }
-
-    .question {
-      font-size: 1.2rem;
-    }
-
-    .btn {
-      font-size: 1rem;
-      padding: 12px 24px;
-    }
-
-    .result-text {
-      font-size: 1.5rem;
-    }
-
-    .result-emoji {
-      font-size: 3.5rem;
-    }
-
-    .result-sub {
-      font-size: 0.9rem;
-    }
+    .emoji-header { font-size: 3rem; }
+    h1 { font-size: 2rem; }
+    .subtitle { font-size: 0.88rem; margin-bottom: 18px; }
+    .message-box { font-size: 0.93rem; padding: 14px 16px; margin-bottom: 18px; }
+    .question { font-size: 1.2rem; }
+    .btn { font-size: 1rem; padding: 12px 24px; }
+    .result-text { font-size: 1.5rem; }
+    .result-emoji { font-size: 3.5rem; }
+    .result-sub { font-size: 0.9rem; }
   }
 </style>
 </head>
@@ -298,37 +367,64 @@
 
 <div class="hearts-bg" id="heartsBg"></div>
 
-<div class="card">
+<!-- ENVELOPE SCREEN -->
+<div class="envelope-screen" id="envelopeScreen">
+  <div class="envelope-wrap" onclick="openLetter()" ontouchstart="openLetter()">
+    <div class="envelope">
+      <span class="envelope-heart">🧿</span>
+    </div>
+    <p class="envelope-label">for you lol</p>
+    <p class="envelope-hint">tap to open ✉️</p>
+  </div>
+</div>
+
+<!-- MAIN CARD -->
+<div class="card" id="mainCard">
   <span class="emoji-header">🦦</span>
   <div class="tag">⚠️ Important Message Inside</div>
   <h1>Hey, Jasy!</h1>
   <p class="subtitle">please don't scroll away i'm nervous lol</p>
 
-  <div class="message-box">
-    Ok so... I've been trying to figure out how to say this for a while now 😅<br><br>
-    You're literally <span class="highlight">so annoying</span> because you make it impossible for me not to think about you.<br><br>
-    So yeah... <span class="highlight">I like you.</span> A lot. 🫶<br><br>
-    There. I said it. No takebacks. 🏃‍♂️💨
-  </div>
-
-  <div class="question-section" id="questionSection">
-    <p class="question">So... what do you say? 👀</p>
-    <div class="btn-row">
-      <button class="btn btn-yes" onclick="handleYes()">Yes! 🥰</button>
-      <div id="no-wrapper">
-        <button class="btn btn-no" id="no-btn"
-          onmouseover="runAway()"
-          ontouchstart="runAway(event)"
-          onclick="runAway(event)">No 😐</button>
-      </div>
+  <!-- FIRST LETTER -->
+  <div id="letter-first">
+    <div class="message-box">
+      Ok so... I've been trying to figure out how to say this for a while now 😅<br><br>
+      You're literally <span class="highlight">so annoying</span> because you make it impossible for me not to think about you.<br><br>
+      So yeah... <span class="highlight">I like you.</span> A lot. 🫶<br><br>
+      There. I said it. No takebacks. 🏃‍♂️💨
     </div>
-    <p style="margin-top:14px; font-size:0.82rem; color:#bbb; font-weight:600;">(try clicking no, i dare you)</p>
+
+    <div class="question-section" id="questionSection">
+      <p class="question">So... what do you say? 👀</p>
+      <div class="btn-row">
+        <button class="btn btn-yes" onclick="handleYes()">Yes</button>
+        <div id="no-wrapper">
+          <button class="btn btn-no" id="no-btn"
+            onmouseover="runAway()"
+            ontouchstart="runAway(event)"
+            onclick="runAway(event)">No</button>
+        </div>
+      </div>
+      <p style="margin-top:14px; font-size:0.82rem; color:#bbb; font-weight:600;">(try clicking no, i dare you)</p>
+    </div>
   </div>
 
-  <div class="result" id="result">
-    <div class="result-emoji">🎉</div>
-    <p class="result-text">SHE SAID YES!!!</p>
-    <p class="result-sub">Best. Day. Ever. You just made this guy the happiest person alive 🥹❤️</p>
+  <!-- SECOND LETTER (shown after Yes) -->
+  <div id="letter-second">
+    <div class="result" id="result">
+      <div class="result-emoji">🎉</div>
+      <p class="result-text">SHE SAID YES!!!</p>
+
+      <!-- ✏️ EDIT YOUR SECOND LETTER BELOW -->
+      <div class="message-box" style="text-align:left; margin-top: 16px;">
+        [Your second letter here, Jasy!] 🥹<br><br>
+        <span class="highlight">[Edit this part]</span> with whatever you want to say after she says yes!<br><br>
+        You can write anything here — sweet, funny, heartfelt. It's all yours. 💙
+      </div>
+      <!-- ✏️ END OF SECOND LETTER -->
+
+      <p class="result-sub">Best. Day. Ever. 🥹❤️</p>
+    </div>
   </div>
 </div>
 
@@ -347,6 +443,15 @@
     heartsBg.appendChild(h);
   }
 
+  // Open envelope
+  let opened = false;
+  function openLetter() {
+    if (opened) return;
+    opened = true;
+    document.getElementById('envelopeScreen').classList.add('hide');
+    document.getElementById('mainCard').classList.add('show');
+  }
+
   // Runaway "No" button
   let noClickCount = 0;
   const noBtn = document.getElementById('no-btn');
@@ -354,35 +459,30 @@
   function runAway(e) {
     if (e) e.preventDefault();
     noClickCount++;
-
     const vw = window.innerWidth;
     const vh = window.innerHeight;
     const btnW = noBtn.offsetWidth || 110;
     const btnH = noBtn.offsetHeight || 50;
     const margin = 10;
-
     const randX = margin + Math.floor(Math.random() * (vw - btnW - margin * 2));
     const randY = margin + Math.floor(Math.random() * (vh - btnH - margin * 2));
-
     noBtn.style.position = 'fixed';
     noBtn.style.left = randX + 'px';
     noBtn.style.top = randY + 'px';
     noBtn.style.zIndex = 200;
 
-    if (noClickCount === 1) {
-      noBtn.textContent = "Nope 😏";
-    } else if (noClickCount === 2) {
-      noBtn.textContent = "Nice try 😂";
-    } else if (noClickCount === 3) {
-      noBtn.textContent = "Catch me if u can 🏃";
-    } else if (noClickCount >= 4) {
-      noBtn.textContent = "NEVER 😜";
-    }
+    if (noClickCount === 1) noBtn.textContent = "Bawal";
+    else if (noClickCount === 2) noBtn.textContent = "Ayaw Talaga?";
+    else if (noClickCount === 3) noBtn.textContent = "Awts";
+    else if (noClickCount >= 4) noBtn.textContent = "wala na pinaglalaruan mo nalang";
   }
 
   // Yes button
   function handleYes() {
     document.getElementById('questionSection').classList.add('hide');
+    // Swap letters
+    document.getElementById('letter-first').style.display = 'none';
+    document.getElementById('letter-second').style.display = 'block';
     document.getElementById('result').classList.add('show');
     launchConfetti();
     spawnMoreHearts();
