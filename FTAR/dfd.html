@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Admin DFD – Tyrant AIM</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #e8eaed;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px 60px;
+  }
+  h2 { font-size: 14px; font-weight: 700; margin-bottom: 20px; color: #111; }
+  svg { background: #fff; border: 1px solid #aaa; display: block; }
+</style>
+</head>
+<body>
+<h2>Figure 3.X. Admin <u>Data Flow</u> Diagram – Web</h2>
+
+<!--
+  COLUMN LAYOUT:
+  Input label text   : x=20  (text starts here, ~200px wide)
+  Input arrow        : x=20 → x=420  (long dashed arrow going into Admin left)
+  Admin box          : x=420  w=110  right edge=530
+  Output arrow+label : x=530 → x=700
+  Process box        : x=700  w=200  right edge=900
+  Flow arrow+label   : x=900 → x=1060
+  Data store         : x=1060 w=230  right edge=1290
+
+  Total width: 1310px
+
+  Row centers (8 rows, 95px apart, starting at 75):
+  R1=75, R2=170, R3=265, R4=360, R5=455, R6=550, R7=645, R8=740
+
+  Admin box: y=40 to y=795
+
+  INPUT arrows: dashed, FROM Admin left (x=420) going LEFT, label on arrow
+    Each input on its own y, clearly separated.
+    Arrow goes LEFT from x=420 with label sitting above the line.
+    
+    Config. Status          y=278  (row 3 bottom area)
+    Access Permission Upd.  y=183  (row 2 bottom area)
+    Payroll Countdown       y=468  (row 5 bottom area)
+    User Activity Logs      y=753  (row 8 bottom area)
+    System Reports          y=768  (row 8 bottom area)
+    
+    These arrows point LEFT (←) so arrow starts at x=420 going to x=20.
+    marker-end on the LEFT means we flip: start=420, end=20, marker at end (x=20).
+    Label sits above the arrow line.
+-->
+
+<svg width="1310" height="870" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="ab" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,1 L7,4 L0,7 Z" fill="#222"/>
+  </marker>
+  <marker id="ag" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+    <path d="M0,1 L7,4 L0,7 Z" fill="#777"/>
+  </marker>
+</defs>
+
+<!-- ══════ ADMIN BOX ══════ -->
+<rect x="420" y="40" width="110" height="755" rx="2" fill="#fff" stroke="#222" stroke-width="2.5"/>
+<text x="475" y="422" text-anchor="middle" font-size="16" font-weight="700" fill="#222">Admin</text>
+
+<!-- ══════ PROCESS BOXES (x=700, w=200, h=68) ══════ -->
+
+<rect x="700" y="42"  width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="65"  text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">1.0</text>
+<text x="800" y="80"  text-anchor="middle" font-size="10" fill="#1e3a5f">User Account Management</text>
+
+<rect x="700" y="137" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="160" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">2.0</text>
+<text x="800" y="175" text-anchor="middle" font-size="10" fill="#1e3a5f">Access Control Configuration</text>
+
+<rect x="700" y="232" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="255" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">3.0</text>
+<text x="800" y="270" text-anchor="middle" font-size="10" fill="#1e3a5f">System Settings Module</text>
+
+<rect x="700" y="327" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="350" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">4.0</text>
+<text x="800" y="365" text-anchor="middle" font-size="10" fill="#1e3a5f">Organizational Structure Module</text>
+
+<rect x="700" y="422" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="445" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">5.0</text>
+<text x="800" y="460" text-anchor="middle" font-size="10" fill="#1e3a5f">Payroll Management</text>
+
+<rect x="700" y="517" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="540" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">6.0</text>
+<text x="800" y="555" text-anchor="middle" font-size="10" fill="#1e3a5f">Employee Records Module</text>
+
+<rect x="700" y="612" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="635" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">7.0</text>
+<text x="800" y="650" text-anchor="middle" font-size="10" fill="#1e3a5f">Contract Management</text>
+
+<rect x="700" y="707" width="200" height="68" rx="6" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.8"/>
+<text x="800" y="730" text-anchor="middle" font-size="10" font-weight="700" fill="#1e3a5f">8.0</text>
+<text x="800" y="748" text-anchor="middle" font-size="10" fill="#1e3a5f">System Reports &amp; Activity Logs</text>
+
+<!-- ══════ DATA STORES (x=1060, open-ended right) ══════ -->
+
+<!-- D1 -->
+<line x1="1060" y1="42"  x2="1060" y2="110" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="42"  x2="1290" y2="42"  stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="110" x2="1290" y2="110" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="42"  x2="1098" y2="110" stroke="#222" stroke-width="1"/>
+<text x="1068" y="67"  font-size="10" font-weight="700" fill="#222">D1</text>
+<text x="1106" y="67"  font-size="10" fill="#222">User Accounts</text>
+<text x="1106" y="82"  font-size="10" fill="#222">&amp; Permissions</text>
+
+<!-- D2 -->
+<line x1="1060" y1="137" x2="1060" y2="205" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="137" x2="1290" y2="137" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="205" x2="1290" y2="205" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="137" x2="1098" y2="205" stroke="#222" stroke-width="1"/>
+<text x="1068" y="162" font-size="10" font-weight="700" fill="#222">D2</text>
+<text x="1106" y="162" font-size="10" fill="#222">Access Control</text>
+<text x="1106" y="177" font-size="10" fill="#222">Config</text>
+
+<!-- D3 -->
+<line x1="1060" y1="232" x2="1060" y2="300" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="232" x2="1290" y2="232" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="300" x2="1290" y2="300" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="232" x2="1098" y2="300" stroke="#222" stroke-width="1"/>
+<text x="1068" y="257" font-size="10" font-weight="700" fill="#222">D3</text>
+<text x="1106" y="257" font-size="10" fill="#222">System Config</text>
+<text x="1106" y="272" font-size="10" fill="#222">&amp; Settings</text>
+
+<!-- D4 -->
+<line x1="1060" y1="327" x2="1060" y2="395" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="327" x2="1290" y2="327" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="395" x2="1290" y2="395" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="327" x2="1098" y2="395" stroke="#222" stroke-width="1"/>
+<text x="1068" y="352" font-size="10" font-weight="700" fill="#222">D4</text>
+<text x="1106" y="352" font-size="10" fill="#222">Organizational</text>
+<text x="1106" y="367" font-size="10" fill="#222">Structure</text>
+
+<!-- D5 -->
+<line x1="1060" y1="422" x2="1060" y2="490" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="422" x2="1290" y2="422" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="490" x2="1290" y2="490" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="422" x2="1098" y2="490" stroke="#222" stroke-width="1"/>
+<text x="1068" y="447" font-size="10" font-weight="700" fill="#222">D5</text>
+<text x="1106" y="447" font-size="10" fill="#222">Payroll</text>
+<text x="1106" y="462" font-size="10" fill="#222">Records</text>
+
+<!-- D6 -->
+<line x1="1060" y1="517" x2="1060" y2="585" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="517" x2="1290" y2="517" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="585" x2="1290" y2="585" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="517" x2="1098" y2="585" stroke="#222" stroke-width="1"/>
+<text x="1068" y="542" font-size="10" font-weight="700" fill="#222">D6</text>
+<text x="1106" y="542" font-size="10" fill="#222">Employee</text>
+<text x="1106" y="557" font-size="10" fill="#222">Records</text>
+
+<!-- D7 -->
+<line x1="1060" y1="612" x2="1060" y2="680" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="612" x2="1290" y2="612" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="680" x2="1290" y2="680" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="612" x2="1098" y2="680" stroke="#222" stroke-width="1"/>
+<text x="1068" y="637" font-size="10" font-weight="700" fill="#222">D7</text>
+<text x="1106" y="637" font-size="10" fill="#222">Contracts</text>
+<text x="1106" y="652" font-size="10" fill="#222">&amp; Agreements</text>
+
+<!-- D8 -->
+<line x1="1060" y1="707" x2="1060" y2="775" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="707" x2="1290" y2="707" stroke="#222" stroke-width="1.5"/>
+<line x1="1060" y1="775" x2="1290" y2="775" stroke="#222" stroke-width="1.5"/>
+<line x1="1098" y1="707" x2="1098" y2="775" stroke="#222" stroke-width="1"/>
+<text x="1068" y="732" font-size="10" font-weight="700" fill="#222">D8</text>
+<text x="1106" y="732" font-size="10" fill="#222">Activity Logs</text>
+<text x="1106" y="747" font-size="10" fill="#222">&amp; Reports</text>
+
+<!-- ══════════════════════════════
+     OUTPUT ARROWS: Admin right (x=530) → Process left (x=700)
+     Solid, straight. Label above.
+     ══════════════════════════════ -->
+
+<line x1="530" y1="69"  x2="700" y2="69"  stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="64"  font-size="9.5" fill="#222">User Account Management</text>
+
+<line x1="530" y1="164" x2="700" y2="164" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="159" font-size="9.5" fill="#222">Access Control Configuration</text>
+
+<line x1="530" y1="259" x2="700" y2="259" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="254" font-size="9.5" fill="#222">System Settings</text>
+
+<line x1="530" y1="354" x2="700" y2="354" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="349" font-size="9.5" fill="#222">Organizational Structure</text>
+
+<line x1="530" y1="449" x2="700" y2="449" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="444" font-size="9.5" fill="#222">Payroll Management</text>
+
+<line x1="530" y1="544" x2="700" y2="544" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="539" font-size="9.5" fill="#222">Employee Records</text>
+
+<line x1="530" y1="639" x2="700" y2="639" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="634" font-size="9.5" fill="#222">Contract Information</text>
+
+<line x1="530" y1="734" x2="700" y2="734" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="538" y="729" font-size="9.5" fill="#222">Report Requests</text>
+
+<!-- ══════════════════════════════
+     PROCESS → DATA STORE arrows
+     ══════════════════════════════ -->
+
+<line x1="900" y1="76"  x2="1060" y2="76"  stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="71"  font-size="9.5" fill="#222">Account Information</text>
+
+<line x1="900" y1="171" x2="1060" y2="171" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="166" font-size="9.5" fill="#222">Permission Data</text>
+
+<line x1="900" y1="266" x2="1060" y2="266" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="261" font-size="9.5" fill="#222">Settings Information</text>
+
+<line x1="900" y1="361" x2="1060" y2="361" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="356" font-size="9.5" fill="#222">Org. Information</text>
+
+<line x1="900" y1="456" x2="1060" y2="456" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="451" font-size="9.5" fill="#222">Payroll Information</text>
+
+<line x1="900" y1="551" x2="1060" y2="551" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="546" font-size="9.5" fill="#222">Employee Information</text>
+
+<line x1="900" y1="646" x2="1060" y2="646" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="641" font-size="9.5" fill="#222">Contract Information</text>
+
+<line x1="900" y1="741" x2="1060" y2="741" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="908" y="736" font-size="9.5" fill="#222">Log &amp; Report Data</text>
+
+<!-- ══════════════════════════════════════════════════════
+     INPUT / FEEDBACK ARROWS (dashed)
+     Direction: ← pointing LEFT into Admin left edge (x=420)
+     Start at x=420 (Admin left), end at x=20, label above arrow.
+     Arrow tip (marker) at the LEFT end (x=20) pointing left.
+     We do this by: line from x=420 to x=20, marker-end at x=20.
+     Since SVG marker-end points in direction of line (right→left here),
+     we just use the same marker which auto-orients.
+
+     5 inputs, each clearly on its own y:
+       Config. Status          y=283
+       Access Permission Upd.  y=183
+       Payroll Countdown       y=468
+       User Activity Logs      y=752
+       System Reports          y=766
+     ══════════════════════════════════════════════════════ -->
+
+<!-- Access Permission Updates  y=183 -->
+<line x1="420" y1="183" x2="20" y2="183" stroke="#888" stroke-width="1.3" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="22" y="178" font-size="9.5" fill="#555">Access Permission Updates</text>
+
+<!-- Config. Status  y=283 -->
+<line x1="420" y1="283" x2="20" y2="283" stroke="#888" stroke-width="1.3" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="22" y="278" font-size="9.5" fill="#555">Configuration Status</text>
+
+<!-- Payroll Countdown  y=468 -->
+<line x1="420" y1="468" x2="20" y2="468" stroke="#888" stroke-width="1.3" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="22" y="463" font-size="9.5" fill="#555">Payroll Countdown</text>
+
+<!-- User Activity Logs  y=752 -->
+<line x1="420" y1="752" x2="20" y2="752" stroke="#888" stroke-width="1.3" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="22" y="747" font-size="9.5" fill="#555">User Activity Logs</text>
+
+<!-- System Reports  y=766 -->
+<line x1="420" y1="766" x2="20" y2="766" stroke="#888" stroke-width="1.3" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="22" y="761" font-size="9.5" fill="#555">System Reports</text>
+
+<!-- ══════ LEGEND ══════ -->
+<line x1="20"  y1="830" x2="70"  y2="830" stroke="#222" stroke-width="1.4" marker-end="url(#ab)"/>
+<text x="78"   y="835" font-size="10" fill="#222">Output / Write flow</text>
+<line x1="260" y1="830" x2="310" y2="830" stroke="#888" stroke-width="1.4" stroke-dasharray="6,3" marker-end="url(#ag)"/>
+<text x="318"  y="835" font-size="10" fill="#555">Input / Feedback flow</text>
+
+</svg>
+</body>
+</html>
